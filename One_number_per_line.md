@@ -28,7 +28,7 @@
 29
 ```
 
-## Solution
+## Solution #1
 
 `2D:%s/,/\r/g<CR>:g/^$/d<CR>ZZ`  Score:23
 
@@ -68,8 +68,24 @@ pipe `|d` will delete the last line
 
 pipe `|x` will quit, don't need `ZZ`
 
-### other solution
 
-`djgJ.$x:s/,/\r/g|x<CR>`    Score:22 
+## Solution #2
+
+`djgJ.$x:s/,/\r/g|x<CR>`    Score:22
 
 could delete before substitution, but same score
+
+
+## Solution #3
+
+2D3gJIwr<CR><Esc>u9@.$xZZ 18
+dj3JIwr<CR><Esc>u9@.$xZZ  17
+
+
+## Solution #4
+
+dj3gJV"=[<C-R><C-A>]<CR>pZZ 16
+dj3JV"=[<C-R><C-L>]<CR>pZZ 15
+5gJV"=[<C-R><C-A>]<CR>pZZ 14
+
+[explain](http://vi.stackexchange.com/questions/13602/the-meaning-of-in-vim)
