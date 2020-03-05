@@ -37,16 +37,20 @@ surpises.
 
 `:g/./norm I*<CR>ZZ` Score:15
 
-`:g/^\w/norm I*<CR>ZZ` Score:17
+Find the lines start with any character, then insert * at the beginning.
 
-Find the line stats with any character, and inset * at the beginning.
+PS: `:g/./cmd` match all non-empty line, no need `:g/^\w/cmd`.
 
 
 ## Solution #2
 
-`<C-V>GI*<Esc>:%s/*$//<CR>ZZ` Score:16
+`<C-V>GI*<Esc>:%s/*$/<CR>ZZ` Score:15
 
-Insert * at beginning of every line and remove * following with empty line.
+`:%s/^/*<CR>:%s/*$/<CR>ZZ` Score:18
+
+Insert * at the beginning of every line, then remove * following with empty line.
+
+PS: `s/pattern/<CR>` remove pattern, no need `s/pattern//<CR>`
 
 
 ## Solution #3
@@ -55,7 +59,7 @@ Insert * at beginning of every line and remove * following with empty line.
 
 `:%s/^\ze\w/*<CR>ZZ` Score:15
 
-Match the beginning of a line with any character, and subsitute with *.
+Match the beginning of lines start with any character, and subsitute with *.
 
 ```
 \ze	Matches at any position, and sets the end of the match there: The
@@ -69,7 +73,7 @@ Match the beginning of a line with any character, and subsitute with *.
 
 `:%s/./*&<CR>ZZ` Score:11
 
-`:%s/^./*&/<CR>ZZ` Score:12
+`:%s/^./*&<CR>ZZ` Score:12
 
  `&` means the whole matched pattern, same as `/0`
 
@@ -78,11 +82,11 @@ Match the beginning of a line with any character, and subsitute with *.
 
 `:g/./s/^/*<CR>ZZ` Score:13
 
-Find the line stats with any character, and replace the beginning with *.
+Find lines start with any character, and replace beginning with *.
 
 
 ## Solution #6
 
 `<C-V>GyPgvr*ZZ` Score:10
 
-Copy first character of each line at the beginning, reselect them and replace with *
+Copy first character of each line before the beginning, reselect them and replace with *
