@@ -21,9 +21,13 @@ foo = "a"
 
 ## Solution #1
 
+`:%s/a.*/“\0”/<CR>ZZ` Score:16
+
 `:%s/a.*/“&”/<CR>ZZ` Score:15
 
-One time subsitution, `&` equivalent to `\0`, no need `/g`
+`&` means the whole matched pattern, same as `/0`
+
+One time subsitution, no need `/g`
 
 
 ## Solution #2
